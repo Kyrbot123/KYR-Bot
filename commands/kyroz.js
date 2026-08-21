@@ -44,7 +44,7 @@ module.exports = {
     const embed = new EmbedBuilder()
       .setTitle('👋 Hey! I\'m the official Kyroz bot')
       .setDescription("Here to keep you updated and help you around the server. #GOKYR\n\nHere's what I can do:")
-      .setColor(0x000000)
+      .setColor(0x010101)
       .setFooter({ text: '#GOKYR' });
 
     for (const category of CATEGORIES) {

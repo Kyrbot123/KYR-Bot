@@ -27,7 +27,7 @@ module.exports = {
     const embed = new EmbedBuilder()
       .setTitle('⚙️ Bot Settings')
       .setDescription('Select a setting below to configure it.')
-      .setColor(0x000000)
+      .setColor(0x010101)
       .setFooter({ text: '#GOKYR' });
 
     for (const setting of SETTINGS) {

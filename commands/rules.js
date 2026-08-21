@@ -44,7 +44,7 @@ module.exports = {
         "Thank you for your understanding and enjoy your stay with us!\n\n" +
         "— The Kyroz Team"
       )
-      .setColor(0x000000)
+      .setColor(0x010101)
       .setThumbnail(interaction.guild.iconURL());
 
     await channel.send({ embeds: [embed] });

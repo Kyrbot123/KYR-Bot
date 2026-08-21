@@ -74,7 +74,7 @@ module.exports = {
       .setTitle('🏆 Rank Verification')
       .setDescription(`${interaction.user} submitted a screenshot for rank verification.\n\nStaff: please review the screenshot and select the correct rank below.`)
       .setImage(screenshot.url)
-      .setColor(0x000000)
+      .setColor(0x010101)
       .setFooter({ text: '#GOKYR' });
 
     const rows = [];

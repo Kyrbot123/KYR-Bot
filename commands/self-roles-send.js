@@ -23,7 +23,7 @@ module.exports = {
     const embed = new EmbedBuilder()
       .setTitle('SELF ROLES')
       .setDescription(`Choose your roles to receive the Kyroz updates you're interested in.\n\n${descLines}`)
-      .setColor(0x000000)
+      .setColor(0x010101)
       .setThumbnail(interaction.guild.iconURL())
       .setFooter({ text: '#GOKYR' });
 

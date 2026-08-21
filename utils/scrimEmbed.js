@@ -21,7 +21,7 @@ function buildScrimEmbed(scrim, scrimId) {
       { name: 'Date', value: `<t:${scrim.date}:F> (<t:${scrim.date}:R>)` },
       { name: `Players (${scrim.players.length}/${scrim.maxPlaces})`, value: playersList }
     )
-    .setColor(scrim.status === 'cancelled' ? 0x555555 : 0x000000)
+    .setColor(scrim.status === 'cancelled' ? 0x555555 : 0x010101)
     .setFooter({ text: `Scrim ID: ${scrimId} • #GOKYR` });
 
   return embed;

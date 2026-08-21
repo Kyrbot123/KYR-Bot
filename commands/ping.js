@@ -17,7 +17,7 @@ module.exports = {
         { name: 'Roundtrip Latency', value: `${roundtrip}ms`, inline: true },
         { name: 'WebSocket Latency', value: `${wsPing}ms`, inline: true }
       )
-      .setColor(0x000000)
+      .setColor(0x010101)
       .setFooter({ text: '#GOKYR' });
 
     await interaction.editReply({ content: null, embeds: [embed] });

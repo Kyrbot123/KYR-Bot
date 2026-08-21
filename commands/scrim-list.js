@@ -22,7 +22,7 @@ module.exports = {
 
     const embed = new EmbedBuilder()
       .setTitle('⚔️ Upcoming Scrims')
-      .setColor(0x000000)
+      .setColor(0x010101)
       .setFooter({ text: '#GOKYR' });
 
     for (const scrim of scrims) {
