@@ -31,7 +31,7 @@ const CATEGORIES = [
   },
   {
     name: '🔗 General',
-    commands: ['kyroz', 'shop'],
+    commands: ['kyroz', 'shop', 'ping'],
   },
 ];
 
