@@ -7,6 +7,7 @@ const {
   ButtonStyle,
 } = require('discord.js');
 const db = require('../utils/firebase');
+const { BANNER_URL } = require('../utils/branding');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -44,6 +45,8 @@ module.exports = {
       .setTitle(panelTitle)
       .setDescription(panelDescription)
       .setColor(0x010101)
+      .setThumbnail(interaction.guild.iconURL())
+      .setImage(BANNER_URL)
       .setFooter({ text: '#GOKYR' });
 
     const row = new ActionRowBuilder().addComponents(

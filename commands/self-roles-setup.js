@@ -12,6 +12,17 @@ module.exports = {
         .addRoleOption(opt => opt.setName('role').setDescription('Role to assign').setRequired(true))
         .addStringOption(opt => opt.setName('label').setDescription('Button label').setRequired(true))
         .addStringOption(opt => opt.setName('emoji').setDescription('Button emoji').setRequired(false))
+        .addStringOption(opt =>
+          opt.setName('color')
+            .setDescription('Button color')
+            .setRequired(false)
+            .addChoices(
+              { name: 'Blurple', value: 'Primary' },
+              { name: 'Gray', value: 'Secondary' },
+              { name: 'Green', value: 'Success' },
+              { name: 'Red', value: 'Danger' },
+            )
+        )
     )
     .addSubcommand(sub =>
       sub.setName('remove')
@@ -31,8 +42,9 @@ module.exports = {
       const role = interaction.options.getRole('role');
       const label = interaction.options.getString('label');
       const emoji = interaction.options.getString('emoji') || '🔔';
+      const color = interaction.options.getString('color') || 'Secondary';
 
-      await ref.doc(role.id).set({ label, emoji, roleId: role.id });
+      await ref.doc(role.id).set({ label, emoji, roleId: role.id, color });
 
       return interaction.reply({ content: `✅ Self-role added: ${emoji} **${label}** → ${role}`, ephemeral: true });
     }
@@ -50,7 +62,7 @@ module.exports = {
       }
       const list = snapshot.docs.map(doc => {
         const d = doc.data();
-        return `${d.emoji} **${d.label}** — <@&${d.roleId}>`;
+        return `${d.emoji} **${d.label}** — <@&${d.roleId}> (${d.color || 'Secondary'})`;
       }).join('\n');
       return interaction.reply({ content: `**Self-roles:**\n${list}`, ephemeral: true });
     }

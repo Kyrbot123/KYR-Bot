@@ -1,4 +1,5 @@
-const { SlashCommandBuilder, PermissionFlagsBits, EmbedBuilder } = require('discord.js');
+const { SlashCommandBuilder, PermissionFlagsBits, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
+const { BANNER_URL } = require('../utils/branding');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -10,7 +11,7 @@ module.exports = {
   async execute(interaction) {
     const channel = interaction.options.getChannel('channel');
 
-    const embed = new EmbedBuilder()
+    const rulesEmbed = new EmbedBuilder()
       .setTitle('Official Rules of Kyroz ✅')
       .setDescription(
         "Welcome to Kyroz. To ensure a pleasant and respectful atmosphere for everyone, please read and respect the following rules:\n\n" +
@@ -45,9 +46,25 @@ module.exports = {
         "— The Kyroz Team"
       )
       .setColor(0x010101)
+      .setThumbnail(interaction.guild.iconURL())
+      .setImage(BANNER_URL);
+
+    const acceptEmbed = new EmbedBuilder()
+      .setTitle('Accept the rules of KYR | Kyroz to access the entire server')
+      .setDescription('To accept the server rules, please interact with the button below!')
+      .setColor(0x010101)
       .setThumbnail(interaction.guild.iconURL());
 
-    await channel.send({ embeds: [embed] });
+    const row = new ActionRowBuilder().addComponents(
+      new ButtonBuilder()
+        .setCustomId('accept_rules')
+        .setLabel('Accept the rules')
+        .setStyle(ButtonStyle.Success)
+    );
+
+    await channel.send({ embeds: [rulesEmbed] });
+    await channel.send({ embeds: [acceptEmbed], components: [row] });
+
     await interaction.reply({ content: `✅ Rules sent to ${channel}.`, ephemeral: true });
   },
 };

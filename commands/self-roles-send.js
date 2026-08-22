@@ -1,5 +1,6 @@
 const { SlashCommandBuilder, PermissionFlagsBits, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 const db = require('../utils/firebase');
+const { BANNER_URL } = require('../utils/branding');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -25,6 +26,7 @@ module.exports = {
       .setDescription(`Choose your roles to receive the Kyroz updates you're interested in.\n\n${descLines}`)
       .setColor(0x010101)
       .setThumbnail(interaction.guild.iconURL())
+      .setImage(BANNER_URL)
       .setFooter({ text: '#GOKYR' });
 
     const rows = [];
@@ -35,7 +37,7 @@ module.exports = {
             .setCustomId(`selfrole_${r.roleId}`)
             .setLabel(r.label)
             .setEmoji(r.emoji)
-            .setStyle(ButtonStyle.Secondary)
+            .setStyle(ButtonStyle[r.color || 'Secondary'])
         )
       );
       rows.push(row);
