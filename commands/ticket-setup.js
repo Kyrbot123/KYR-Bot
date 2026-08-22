@@ -32,14 +32,28 @@ module.exports = {
         .setDescription('Category where new tickets will be created')
         .setRequired(true)
     )
+    .addRoleOption(option =>
+      option.setName('staff_role')
+        .setDescription('Staff role to ping when a ticket is opened')
+        .setRequired(true)
+    )
+    .addRoleOption(option =>
+      option.setName('admin_role')
+        .setDescription('Admin role to ping when a ticket is opened')
+        .setRequired(true)
+    )
     .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
 
   async execute(interaction) {
     const channel = interaction.options.getChannel('channel');
     const category = interaction.options.getChannel('category');
+    const staffRole = interaction.options.getRole('staff_role');
+    const adminRole = interaction.options.getRole('admin_role');
 
     await db.collection('kyrbot_ticket_config').doc(interaction.guild.id).set({
       categoryId: category.id,
+      staffRoleId: staffRole.id,
+      adminRoleId: adminRole.id,
       guildId: interaction.guild.id,
       updatedAt: new Date().toISOString(),
     });

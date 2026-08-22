@@ -53,7 +53,7 @@ module.exports = {
         });
       }
 
-      const { categoryId } = configDoc.data();
+      const { categoryId, staffRoleId, adminRoleId } = configDoc.data();
 
       const ticketChannel = await interaction.guild.channels.create({
         name: `ticket-${interaction.user.username}`,
@@ -91,7 +91,7 @@ module.exports = {
       const embed = new EmbedBuilder()
         .setTitle(`🎫 Ticket — ${reason.label}`)
         .setDescription(`Hello ${interaction.user}, thanks for reaching out. Our team will assist you shortly.`)
-        .setColor(0x000000)
+        .setColor(0x010101)
         .setFooter({ text: '#GOKYR' });
 
       const closeRow = new ActionRowBuilder().addComponents(
@@ -102,7 +102,13 @@ module.exports = {
           .setStyle(ButtonStyle.Danger)
       );
 
-      await ticketChannel.send({ content: `${interaction.user}`, embeds: [embed], components: [closeRow] });
+      const pingRoles = [staffRoleId, adminRoleId].filter(Boolean).map(id => `<@&${id}>`).join(' ');
+
+      await ticketChannel.send({
+        content: `${interaction.user}${pingRoles ? ` ${pingRoles}` : ''}`,
+        embeds: [embed],
+        components: [closeRow],
+      });
 
       return interaction.followUp({
         content: `✅ Your ticket has been created: ${ticketChannel}`,
