@@ -3,11 +3,18 @@ const {
   PermissionFlagsBits,
   EmbedBuilder,
   ActionRowBuilder,
-  ButtonBuilder,
-  ButtonStyle,
+  StringSelectMenuBuilder,
 } = require('discord.js');
 const db = require('../utils/firebase');
 const { BANNER_URL } = require('../utils/branding');
+
+const DEFAULT_REASONS = [
+  { id: 'general', label: 'General question', emoji: '❓' },
+  { id: 'bug', label: 'Report a bug', emoji: '🐛' },
+  { id: 'partnership', label: 'Partnership', emoji: '🤝' },
+  { id: 'report', label: 'Report a member', emoji: '🚨' },
+  { id: 'other', label: 'Other', emoji: '📝' },
+];
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -35,26 +42,31 @@ module.exports = {
       updatedAt: new Date().toISOString(),
     });
 
-    const messageConfig = await db.collection('kyrbot_config').doc(`ticket_message_${interaction.guild.id}`).get();
-    const panelTitle = messageConfig.exists ? messageConfig.data().title : '🎫 Support Tickets';
-    const panelDescription = messageConfig.exists
-      ? messageConfig.data().description
-      : 'Need help? Click the button below and select a reason to open a ticket.';
-
     const embed = new EmbedBuilder()
-      .setTitle(panelTitle)
-      .setDescription(panelDescription)
+      .setTitle("KYROZ'S SUPPORT 🎭")
+      .setDescription(
+        "**Version française**\n" +
+        "> Les tickets non sérieux (trolls) sont strictement interdits. Tout abus du système de tickets pourra entraîner de lourdes sanctions. Sans réponse de votre part sous 24 heures, votre ticket sera automatiquement supprimé.\n\n" +
+        "»» L'équipe Staff\n\n" +
+        "**English Version**\n" +
+        "> Non-serious tickets (trolls) are strictly prohibited. Any abuse of the ticketing system may result in severe penalties. If there is no response from you within 24 hours, your ticket will be automatically deleted.\n\n" +
+        "»» The Staff Team"
+      )
       .setColor(0x010101)
       .setThumbnail(interaction.guild.iconURL())
       .setImage(BANNER_URL)
       .setFooter({ text: '#GOKYR' });
 
+    const snapshot = await db.collection('kyrbot_ticket_reasons').doc(interaction.guild.id).collection('reasons').get();
+    const reasons = snapshot.empty
+      ? DEFAULT_REASONS
+      : snapshot.docs.map(doc => ({ id: doc.id, label: doc.data().label, emoji: doc.data().emoji || '📝' }));
+
     const row = new ActionRowBuilder().addComponents(
-      new ButtonBuilder()
-        .setCustomId('open_ticket')
-        .setLabel('Open a ticket')
-        .setEmoji('🎫')
-        .setStyle(ButtonStyle.Primary)
+      new StringSelectMenuBuilder()
+        .setCustomId('ticket_reason')
+        .setPlaceholder('Take an option')
+        .addOptions(reasons.map(r => ({ label: r.label, value: r.id, emoji: r.emoji })))
     );
 
     await channel.send({ embeds: [embed], components: [row] });

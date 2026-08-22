@@ -34,25 +34,7 @@ async function getReasons(guildId) {
 module.exports = {
   name: Events.InteractionCreate,
   async execute(interaction) {
-    // Step 1: user clicks "Open a ticket" -> show reason dropdown
-    if (interaction.isButton() && interaction.customId === 'open_ticket') {
-      const reasons = await getReasons(interaction.guild.id);
-
-      const row = new ActionRowBuilder().addComponents(
-        new StringSelectMenuBuilder()
-          .setCustomId('ticket_reason')
-          .setPlaceholder('Select a reason')
-          .addOptions(reasons.map(r => ({ label: r.label, value: r.id, emoji: r.emoji })))
-      );
-
-      return interaction.reply({
-        content: 'Please select a reason for your ticket:',
-        components: [row],
-        ephemeral: true,
-      });
-    }
-
-    // Step 2: user selects a reason -> create the ticket channel
+    // User selects a reason directly from the panel -> create the ticket channel
     if (interaction.isStringSelectMenu() && interaction.customId === 'ticket_reason') {
       await interaction.deferUpdate();
 
