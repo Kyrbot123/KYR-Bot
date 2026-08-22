@@ -10,11 +10,13 @@ const {
 const db = require('../utils/firebase');
 
 const DEFAULT_REASONS = [
-  { id: 'general', label: 'General question', emoji: '❓' },
-  { id: 'bug', label: 'Report a bug', emoji: '🐛' },
-  { id: 'partnership', label: 'Partnership', emoji: '🤝' },
-  { id: 'report', label: 'Report a member', emoji: '🚨' },
-  { id: 'other', label: 'Other', emoji: '📝' },
+  { id: 'staff', label: 'To be staff', emoji: '<:kyroz:1535345305783115826>' },
+  { id: 'matcherino', label: 'Matcherino (Only for the tournament)', emoji: '<:matcherinopins:1494642227266195536>' },
+  { id: 'tier', label: 'Claim my tier', emoji: '<:TierS:1505828261018472529>' },
+  { id: 'training', label: 'Join our training center', emoji: '<:good:1494642260002996225>' },
+  { id: 'report', label: 'Factual report or problem', emoji: '<:bad:1494642291036389446>' },
+  { id: 'club', label: 'Join one of our clubs', emoji: '<:bslogo:1508061127832240158>' },
+  { id: 'collab', label: 'Collaboration', emoji: '<:0developer:1533928944116432956>' },
 ];
 
 async function getReasons(guildId) {
