@@ -45,7 +45,7 @@ module.exports = {
     });
 
     const embed = new EmbedBuilder()
-      .setTitle("KYROZ'S SUPPORT 🎭")
+      .setTitle("<:kyroldemojis:1494698723882700821> KYROZ'S SUPPORT")
       .setDescription(
         "**Version française**\n" +
         "> Les tickets non sérieux (trolls) sont strictement interdits. Tout abus du système de tickets pourra entraîner de lourdes sanctions. Sans réponse de votre part sous 24 heures, votre ticket sera automatiquement supprimé.\n\n" +

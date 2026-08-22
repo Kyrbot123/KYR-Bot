@@ -109,8 +109,12 @@ module.exports = {
       });
     }
 
-    // Step 3: close ticket
+    // Step 3: close ticket (staff only)
     if (interaction.isButton() && interaction.customId === 'close_ticket') {
+      if (!interaction.member.permissions.has(PermissionFlagsBits.ManageChannels)) {
+        return interaction.reply({ content: '❌ Only staff can close this ticket.', ephemeral: true });
+      }
+
       await interaction.reply('🔒 This ticket will be closed in 5 seconds...');
 
       await db.collection('kyrbot_tickets').doc(interaction.channel.id).update({
