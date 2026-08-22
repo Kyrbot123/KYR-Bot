@@ -6,6 +6,7 @@ const {
   ButtonStyle,
   PermissionFlagsBits,
   EmbedBuilder,
+  AttachmentBuilder,
 } = require('discord.js');
 const db = require('../utils/firebase');
 
@@ -117,6 +118,37 @@ module.exports = {
 
       await interaction.reply('🔒 This ticket will be closed in 5 seconds...');
 
+      // Build the transcript
+      try {
+        const messages = await fetchAllMessages(interaction.channel);
+        const transcriptText = messages
+          .reverse()
+          .map(m => `[${new Date(m.createdTimestamp).toISOString()}] ${m.author.tag}: ${m.content || '[embed/attachment]'}`)
+          .join('\n');
+
+        const buffer = Buffer.from(transcriptText || 'No messages in this ticket.', 'utf-8');
+        const attachment = new AttachmentBuilder(buffer, { name: `${interaction.channel.name}.txt` });
+
+        const settingsDoc = await db.collection('kyrbot_config').doc(`settings_${interaction.guild.id}`).get();
+        const logsChannelId = settingsDoc.exists ? settingsDoc.data().logs_channel : null;
+
+        if (logsChannelId) {
+          const logsChannel = interaction.guild.channels.cache.get(logsChannelId);
+          if (logsChannel) {
+            const ticketDoc = await db.collection('kyrbot_tickets').doc(interaction.channel.id).get();
+            const reasonId = ticketDoc.exists ? ticketDoc.data().reason : 'unknown';
+            const userId = ticketDoc.exists ? ticketDoc.data().userId : null;
+
+            await logsChannel.send({
+              content: `📋 Ticket closed: **${interaction.channel.name}** — Reason: \`${reasonId}\`${userId ? ` — Opened by <@${userId}>` : ''} — Closed by ${interaction.user}`,
+              files: [attachment],
+            });
+          }
+        }
+      } catch (error) {
+        console.error('Failed to generate/send ticket transcript:', error.message);
+      }
+
       await db.collection('kyrbot_tickets').doc(interaction.channel.id).update({
         status: 'closed',
         closedAt: new Date().toISOString(),
@@ -128,3 +160,23 @@ module.exports = {
     }
   },
 };
+
+async function fetchAllMessages(channel) {
+  let allMessages = [];
+  let lastId;
+
+  while (true) {
+    const options = { limit: 100 };
+    if (lastId) options.before = lastId;
+
+    const messages = await channel.messages.fetch(options);
+    if (messages.size === 0) break;
+
+    allMessages = allMessages.concat(Array.from(messages.values()));
+    lastId = messages.last().id;
+
+    if (messages.size < 100) break;
+  }
+
+  return allMessages;
+}
