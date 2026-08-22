@@ -36,7 +36,7 @@ module.exports = {
         "• Impersonating a staff member is prohibited.\n\n" +
         "🔹 **6. Sanctions**\n" +
         "• Failure to comply with the rules may result in:\n" +
-        "»» Warning\n»» Mute\n»» Kick\n»» Ban\n" +
+        "<a:blue_arrow:1533913545568157696> Warning\n<a:blue_arrow:1533913545568157696> Mute\n<a:blue_arrow:1533913545568157696> Kick\n<a:blue_arrow:1533913545568157696> Ban\n" +
         "Sanctions are applied according to the severity of the offense.\n\n" +
         "🔹 **7. Common Sense**\n" +
         "• Use your common sense in all circumstances.\n" +

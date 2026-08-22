@@ -49,10 +49,10 @@ module.exports = {
       .setDescription(
         "**Version française**\n" +
         "> Les tickets non sérieux (trolls) sont strictement interdits. Tout abus du système de tickets pourra entraîner de lourdes sanctions. Sans réponse de votre part sous 24 heures, votre ticket sera automatiquement supprimé.\n\n" +
-        "»» L'équipe Staff\n\n" +
+        "<a:blue_arrow:1533913545568157696> L'équipe Staff\n\n" +
         "**English Version**\n" +
         "> Non-serious tickets (trolls) are strictly prohibited. Any abuse of the ticketing system may result in severe penalties. If there is no response from you within 24 hours, your ticket will be automatically deleted.\n\n" +
-        "»» The Staff Team"
+        "<a:blue_arrow:1533913545568157696> The Staff Team"
       )
       .setColor(0x010101)
       .setThumbnail(interaction.guild.iconURL())
