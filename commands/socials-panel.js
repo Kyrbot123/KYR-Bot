@@ -29,7 +29,8 @@ module.exports = {
         "**— The Kyroz Organization** <:Kyremotes:1495339472420606113>"
       )
       .setColor(0x010101)
-      .setThumbnail(interaction.guild.iconURL());
+      .setThumbnail(interaction.guild.iconURL())
+      .setImage('https://i.imgur.com/uFKnvKM.png');
 
     const row1 = new ActionRowBuilder().addComponents(
       new ButtonBuilder().setLabel('Instagram').setStyle(ButtonStyle.Link).setURL('https://www.instagram.com/kyroz_esports?igsh=aHgydTZvdTNleG94&utm_source=qr'),
