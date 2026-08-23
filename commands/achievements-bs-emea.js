@@ -13,7 +13,7 @@ module.exports = {
     }
 
     const embed = new EmbedBuilder()
-      .setTitle('🎮 Brawl Stars — Roster EMEA')
+      .setTitle('<:brawlstartlogo:1536631350428172338> Brawl Stars — Roster EMEA')
       .setDescription(
         "**Tournament:**\n<:matcherinopins:1494642227266195536> Matcherino Pin\n\n" +
         "**Earnings:**\n💵 350€"
