@@ -40,7 +40,6 @@ module.exports = {
     );
 
     const row2 = new ActionRowBuilder().addComponents(
-      new ButtonBuilder().setLabel('Email').setStyle(ButtonStyle.Link).setURL('mailto:kyroz.kyr@gmail.com'),
       new ButtonBuilder().setLabel('Website').setStyle(ButtonStyle.Link).setURL('https://kyrozesports.netlify.app/')
     );
 
