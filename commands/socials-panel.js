@@ -16,13 +16,12 @@ module.exports = {
       .setTitle('KYROZ SOCIALS')
       .setDescription(
         "As we enter this new chapter, we are proud to strengthen our presence across all major platforms:\n\n" +
-        "• **TikTok** <a:TikTok:1533927532431278170>\n" +
         "• **Instagram** <:insta:1533927852066476133>\n" +
         "• **YouTube** <:YouTube:1533928056371286026>\n" +
         "• **Twitch** <:twitch:1533928247828545696>\n" +
         "• **X** <:twitter_o_x:1533928415751700590>\n" +
         "• **Discord** <:d_discord:1533928600297013329>\n" +
-        "• **Email address** 📩\n" +
+        "• **Email address** 📩 kyroz.kyr@gmail.com\n" +
         "• **Website** <:0developer:1533928944116432956>\n\n" +
         "Follow our journey, discover our projects, tournaments, and competitive teams, and become part of the Kyroz community by proudly representing our colors.\n\n" +
         "**Thank you for your support and trust.**\n\n" +
