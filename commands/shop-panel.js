@@ -15,11 +15,12 @@ module.exports = {
     const embed = new EmbedBuilder()
       .setTitle('KYROZ OFFICIAL SHOP')
       .setDescription(
-        "Welcome to the official Kyroz Esport Shop.\n\n" +
-        "This is where our community can discover and purchase Kyroz merchandise, designed around our identity and competitive vision.\n\n" +
-        "New products and exclusive releases will regularly be added to the shop as Kyroz continues to grow.\n\n" +
-        "By purchasing our merchandise, you directly support the organization, our players, and our future projects.\n\n" +
-        "Represent Kyroz. Be part of the journey.\n#GOKYR"
+        "**Welcome to the official Kyroz Esport Shop.**\n\n" +
+        "This is where our community can discover and purchase **Kyroz merchandise**, designed around our identity and competitive vision.\n\n" +
+        "New products and exclusive releases **will regularly be added to the shop as Kyroz continues to grow.**\n\n" +
+        "By purchasing our merchandise, **you directly support the organization, our players, and our future projects.**\n\n" +
+        "Shop Now\n\n" +
+        "**Represent Kyroz. Be part of the journey.**\n**#GOKYR**"
       )
       .setColor(0x010101)
       .setThumbnail(interaction.guild.iconURL())
@@ -27,11 +28,11 @@ module.exports = {
 
     const row = new ActionRowBuilder().addComponents(
       new ButtonBuilder()
-        .setLabel('YokoEsport')
+        .setLabel('Buy jersey now')
         .setStyle(ButtonStyle.Link)
         .setURL('https://yokoesport.fr/equipes/kyroz-esport'),
       new ButtonBuilder()
-        .setLabel('XRP Cafe')
+        .setLabel('Buy our cards now')
         .setStyle(ButtonStyle.Link)
         .setURL('https://xrp.cafe/collection/kyroz')
     );
