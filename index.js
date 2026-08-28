@@ -49,7 +49,7 @@ if (fs.existsSync(eventsPath)) {
 client.once('clientReady', () => {
   console.log(`✅ Logged in as ${client.user.tag}`);
   client.user.setPresence({
-    activities: [{ name: 'Watching : #GOKYR' }],
+    activities: [{ name: '#GOKYR' }],
     status: 'online',
   });
 
