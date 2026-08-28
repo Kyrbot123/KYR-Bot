@@ -56,6 +56,10 @@ client.once('clientReady', () => {
   const { startScrimScheduler } = require('./utils/scrimScheduler');
   startScrimScheduler(client);
   console.log('⏰ Scrim reminder scheduler started.');
+
+  const { startSocialScheduler } = require('./utils/socialScheduler');
+  startSocialScheduler(client);
+  console.log('📡 Social media (X/Instagram) scheduler started.');
 });
 
 // --- Handle slash commands ---
