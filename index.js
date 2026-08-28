@@ -49,7 +49,7 @@ if (fs.existsSync(eventsPath)) {
 client.once('clientReady', () => {
   console.log(`✅ Logged in as ${client.user.tag}`);
   client.user.setPresence({
-    activities: [{ name: '#GOKYR' }],
+    activities: [{ name: '#KYRWIN' }],
     status: 'online',
   });
 
@@ -59,7 +59,7 @@ client.once('clientReady', () => {
 
   const { startSocialScheduler } = require('./utils/socialScheduler');
   startSocialScheduler(client);
-  console.log('📡 Social media (X/Instagram) scheduler started.');
+  console.log('📡 Social media (X) scheduler started.');
 });
 
 // --- Handle slash commands ---
